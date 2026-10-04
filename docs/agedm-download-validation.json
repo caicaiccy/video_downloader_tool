@@ -1,0 +1,28 @@
+{
+  "path": "/Users/admin/Downloads/捡走被人悔婚的千金，教会她坏坏的幸福生活 第01集 - 在线播放 - AGE动漫 [2c822f97141c].mp4",
+  "bytes": 211452711,
+  "full_decode_exit": 0,
+  "elapsed_seconds": 19.0,
+  "errors": "",
+  "duration": "00:23:59.76",
+  "resolution": "1920x1080",
+  "video": "H.264",
+  "audio": "AAC",
+  "page_url": "https://www.agedm.io/play/20230189/2/1",
+  "extension_version": "1.2.0",
+  "queue_status": "completed",
+  "attempts": 1,
+  "transport": "browser anonymous fetch; credentials omit",
+  "decode_options": [
+    "-v",
+    "error",
+    "-xerror",
+    "-fps_mode",
+    "passthrough",
+    "-enc_time_base:v",
+    "-1",
+    "-f",
+    "null",
+    "-"
+  ]
+}
