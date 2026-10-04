@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>视频本地下载器</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <img id="brandMark" class="brand-mark" src="icons/icon48.png" alt="">
+        <button id="backSettings" class="secondary icon-button" title="返回" aria-label="返回下载页" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 5-7 7 7 7M5 12h15"/></svg>
+        </button>
+        <div>
+          <h1 id="pageTitle">视频本地下载器</h1>
+        </div>
+        <button id="scanMedia" class="secondary icon-button" title="扫描媒体" aria-label="扫描媒体">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4a1 1 0 0 0-1 1v4m13-5h4a1 1 0 0 1 1 1v4M3 16v4a1 1 0 0 0 1 1h4m8 0h4a1 1 0 0 0 1-1v-4M3 12h18"/></svg>
+        </button>
+        <button id="openSettings" class="secondary icon-button" title="设置" aria-label="设置" aria-controls="settingsPage" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.5 3-2 1L4 6l-2 4 2.5 2v2L2 16l2 4 2.5-1 2 1L9 23h5l.5-3 2-1 2.5 1 2-4-2.5-2v-2L21 10l-2-4-2.5 1-2-1L14 3Z" transform="translate(0 -1) scale(1 .95)"/><circle cx="11.5" cy="12" r="3"/></svg>
+        </button>
+      </header>
+      <p id="actionNotice" class="inline-feedback error" role="alert" hidden></p>
+
+      <section id="downloadPage">
+      <section id="mediaSection" hidden>
+        <p id="scanInfo" class="note"></p>
+        <div id="mediaResults" hidden>
+        <label for="mediaChoice">选择要保存的媒体</label>
+        <select id="mediaChoice" class="full-width"></select>
+        <button id="addMedia" class="secondary full-width" aria-live="polite" disabled>将选中媒体加入队列</button>
+        </div>
+      </section>
+      <button id="grantFrames" class="secondary full-width" hidden>授权并扫描跨站播放器</button>
+
+      <section class="queue-section">
+        <div class="queue-heading">
+          <h2>下载队列</h2>
+          <span id="jobCount">0 项</span>
+        </div>
+        <ul id="jobs" class="jobs"></ul>
+        <p id="emptyQueue" class="empty">队列为空</p>
+      </section>
+
+      <button id="useCurrent" class="secondary full-width" aria-live="polite">添加当前页面链接</button>
+      <label for="urls">视频链接（每行一个）</label>
+      <textarea id="urls" rows="1" placeholder="https://www.bilibili.com/video/BV.../"></textarea>
+
+      <div class="settings-row">
+        <button id="addLinks" class="secondary" aria-live="polite">加入列表</button>
+      </div>
+
+      <div class="actions">
+        <button id="startQueue" class="primary">开始队列</button>
+        <button id="cancelQueue" class="danger" disabled>取消</button>
+        <button id="retryFailed" class="secondary">重试失败项</button>
+      </div>
+
+      <div id="status" class="status" role="status" hidden></div>
+      <button id="authorizeDownloads" class="secondary full-width" hidden>授权视频来源并继续下载</button>
+      <p class="note footer-note">网页链接自动解析；扫描任务请保持播放器页打开。</p>
+      </section>
+
+      <section id="settingsPage" hidden>
+        <div class="directory-heading"><label for="downloadDirectory">下载目录</label><button id="resetDirectory" class="text-button" title="恢复系统下载目录">恢复默认</button></div>
+        <div class="directory-row">
+          <input id="downloadDirectory" value="下载" readonly aria-label="下载目录">
+          <button id="chooseDirectory" class="secondary">更改</button>
+          <button id="openDirectory" class="secondary icon-button" title="打开下载目录" aria-label="打开下载目录">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v2M3 8h16a1 1 0 0 1 1 1l-2 10H4L2 9a1 1 0 0 1 1-1Z"/></svg>
+          </button>
+        </div>
+        <div class="preferences-row">
+          <label for="maxRetries">失败重试次数</label>
+          <div class="retry-setting"><input id="maxRetries" type="number" min="0" max="5" value="3" aria-label="失败重试次数"><span>次</span></div>
+        </div>
+      </section>
+    </main>
+    <script src="media.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
